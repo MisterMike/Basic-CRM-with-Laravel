@@ -89,12 +89,25 @@ class MemberController extends Controller
         //get all data from the request
         $data = $request->all();
 
+        // address,zip,city,email,phone_home,phone_mobile,phone_office,birthday,member_since,member_until,license,newsletter,comment 
+
         //set update data
         $insertData = array(
+            'email' => $data['email'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'zip' => $data['zip'],
+            'city' => $data['city'],
+            'phone_home' => $data['phone_home'],
+            'phone_mobile' => $data['phone_mobile'],
+            'phone_office' => $data['phone_office'],
+            'birthday' => $data['birthday'],
+            'member_since' => $data['member_since'],
+            'member_until' => $data['member_until'],
+            'license' => $data['license'],
+            'newsletter' => $data['newsletter'],
+            'comment' => $data['comment'],
             'membership_id' => $data['membership_id']
         );
 
@@ -161,10 +174,21 @@ class MemberController extends Controller
 
         //set update data
         $updateData = array(
+            'email' => $data['email'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'zip' => $data['zip'],
+            'city' => $data['city'],
+            'phone_home' => $data['phone_home'],
+            'phone_mobile' => $data['phone_mobile'],
+            'phone_office' => $data['phone_office'],
+            'birthday' => $data['birthday'],
+            'member_since' => $data['member_since'],
+            'member_until' => $data['member_until'],
+            'license' => $data['license'],
+            'newsletter' => $data['newsletter'],
+            'comment' => $data['comment'],
             'membership_id' => $data['membership_id']
         );
 

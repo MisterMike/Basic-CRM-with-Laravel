@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9dbeeb2e1b2ab0c72b6dd54521e9fcdb",
+    "content-hash": "b7406209f5b99f52737be36b19316cdc",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1170,6 +1170,52 @@
                 }
             ],
             "time": "2020-05-18T15:13:39+00:00"
+        },
+        {
+            "name": "litespeed/lscache-laravel",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/litespeedtech/lscache-laravel.git",
+                "reference": "1307717fd9ffd2f008d6f577bb34f71d1ccd4f55"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/litespeedtech/lscache-laravel/zipball/1307717fd9ffd2f008d6f577bb34f71d1ccd4f55",
+                "reference": "1307717fd9ffd2f008d6f577bb34f71d1ccd4f55",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.1|^6|^7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Litespeed\\LSCache\\LSCacheServiceProvider"
+                    ],
+                    "aliases": {
+                        "LSCache": "Litespeed\\LSCache\\LSCache"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Litespeed\\LSCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Lucas Rolff",
+                    "email": "lrolff@litespeedtech.com"
+                }
+            ],
+            "description": "LSCache Implementation for Laravel",
+            "time": "2020-04-10T12:14:40+00:00"
         },
         {
             "name": "monolog/monolog",

@@ -30,23 +30,23 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">{{ __('messages.Companies') }}</div>
+                <div class="card-header">{{ __('messages.Memberships') }}</div>
                 <div class="card-body">
-                    {{ __('messages.nof_companies', ['nof' => $nofCompanies]) }}
+                    {{ __('messages.nof_memberships', ['nof' => $nofMemberships]) }}
                 </div>
                 <div class="card-footer text-center">
-                    <a href="{{ route('companies') }}">{{ __('messages.show_all') }}</a>
+                    <a href="{{ route('memberships') }}">{{ __('messages.show_all') }}</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">{{ __('messages.Employees') }}</div>
+                <div class="card-header">{{ __('messages.Members') }}</div>
                 <div class="card-body">
-                    {{ __('messages.nof_employees', ['nof' => $nofEmployees]) }}
+                    {{ __('messages.nof_members', ['nof' => $nofMembers]) }}
                 </div>
                 <div class="card-footer text-center">
-                    <a href="{{ route('employees') }}">{{ __('messages.show_all') }}</a>
+                    <a href="{{ route('members') }}">{{ __('messages.show_all') }}</a>
                 </div>
             </div>
         </div>

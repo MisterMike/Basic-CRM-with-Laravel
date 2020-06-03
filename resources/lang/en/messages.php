@@ -6,7 +6,7 @@ return [
     'Add' => 'Add',
     'Members' => 'Members',
     'English' => 'English',
-    'Spanish' => 'Spanish',
+    'German' => 'German',
     'Login' => 'Login',
     'Users' => 'Users',
     'Logout' => 'Logout',

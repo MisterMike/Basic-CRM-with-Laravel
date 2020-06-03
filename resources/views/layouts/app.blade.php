@@ -83,8 +83,8 @@
                                         @case('en')
                                         {{ __('messages.English') }} <span class="caret"></span>
                                         @break
-                                        @case('es')
-                                        {{ __('messages.Spanish') }} <span class="caret"></span>
+                                        @case('de')
+                                        {{ __('messages.German') }} <span class="caret"></span>
                                         @break
                                         @default
                                         {{ __('messages.Language') }} <span class="caret"></span>
@@ -92,7 +92,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="home/en"><i class="fas fa-globe"></i> {{ __('messages.English') }}</a>
-                                    <a class="dropdown-item" href="home/es"><i class="fas fa-globe"></i> {{ __('messages.Spanish') }}</a>
+                                    <a class="dropdown-item" href="home/de"><i class="fas fa-globe"></i> {{ __('messages.German') }}</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">

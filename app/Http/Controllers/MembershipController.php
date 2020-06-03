@@ -200,16 +200,11 @@ class MembershipController extends Controller
         //check if authorized
         $this->authorize('delete', Membership::find($id));
 
-        //get logo file first
-        $logo = DB::table('memberships')->where('id', $id)->get('logo')->first();
-
         //delete the membership from db
         $delete = DB::table('memberships')->where('id', $id)->delete();
 
         if($delete) {
-            //if membership was deleted then remove the logo file
-            Storage::disk('local')->delete('public/' . $logo->logo);
-
+            
             //return with success
             return redirect()->route('memberships')
                 ->with('success', 'The Membership was successfully deleted');

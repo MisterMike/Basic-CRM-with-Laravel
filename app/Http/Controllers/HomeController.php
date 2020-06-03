@@ -25,9 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $nofCompanies = DB::table('companies')->count('id');
-        $nofEmployees = DB::table('employees')->count('id');
-        return view('home', ['nofCompanies' => $nofCompanies, 'nofEmployees' => $nofEmployees]);
+        $nofMemberships = DB::table('memberships')->count('id');
+        $nofMembers = DB::table('members')->count('id');
+        return view('home', ['nofMemberships' => $nofMemberships, 'nofMembers' => $nofMembers]);
     }
 
     public function locale($locale)
