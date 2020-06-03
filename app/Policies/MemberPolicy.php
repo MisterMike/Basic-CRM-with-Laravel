@@ -2,13 +2,13 @@
 
 namespace App\Policies;
 
-use App\Company;
-use App\Employee;
+use App\Membership;
+use App\Member;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class EmployeePolicy
+class MemberPolicy
 {
     use HandlesAuthorization;
 
@@ -36,19 +36,19 @@ class EmployeePolicy
     }
 
     /**
-     * Determine whether the user can view the employee.
+     * Determine whether the user can view a member.
      *
      * @param User $user
-     * @param  \App\Employee  $employee
+     * @param  \App\Member  $member
      * @return mixed
      */
-    public function view(User $user, Employee $employee)
+    public function view(User $user, Member $member)
     {
         //
     }
 
     /**
-     * Determine whether the user can create employees.
+     * Determine whether the user can create members.
      *
      * @param User $user
      * @return mixed
@@ -59,18 +59,18 @@ class EmployeePolicy
     }
 
     /**
-     * Determine whether the user can update the employee.
+     * Determine whether the user can update the member.
      *
      * @param User $user
-     * @param  \App\Employee  $employee
+     * @param  \App\Member  $member
      * @return mixed
      */
-    public function update(User $user, Employee $employee)
+    public function update(User $user, Member $member)
     {
-        $userCompanies = $user->companies()->pluck('companies.id');
+        $userMemberships = $user->memberships()->pluck('membership.id');
 
-        return $userCompanies->contains($employee->company_id)
-            ? Response::allow() : Response::deny('You do not have permission to update an employee for this company.');
+        return $userMemberships->contains($member->membership_id)
+            ? Response::allow() : Response::deny('You do not have permission to update a member of this membership.');
     }
 
     /**
@@ -80,12 +80,12 @@ class EmployeePolicy
      * @param  \App\Employee  $employee
      * @return mixed
      */
-    public function delete(User $user, Employee $employee)
+    public function delete(User $user, Member $member)
     {
-        $userCompanies = $user->companies()->pluck('companies.id');
+        $userMemberships = $user->memberships()->pluck('membership.id');
 
-        return $userCompanies->contains($employee->company_id)
-            ? Response::allow() : Response::deny('You do not have permission to update an employee for this company.');
+        return $userMemberships->contains($member->membership_id)
+            ? Response::allow() : Response::deny('You do not have permission to update a member for this company.');
     }
 
     /**
@@ -95,7 +95,7 @@ class EmployeePolicy
      * @param  \App\Employee  $employee
      * @return mixed
      */
-    public function restore(User $user, Employee $employee)
+    public function restore(User $user, Member $member)
     {
         //
     }
@@ -107,7 +107,7 @@ class EmployeePolicy
      * @param  \App\Employee  $employee
      * @return mixed
      */
-    public function forceDelete(User $user, Employee $employee)
+    public function forceDelete(User $user, Member $member)
     {
         //
     }

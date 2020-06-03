@@ -24,7 +24,7 @@ class MembershipPolicy
     }
 
     /**
-     * Determine whether the user can view any companies.
+     * Determine whether the user can view any memberships.
      *
      * @param User $user
      * @return mixed
@@ -35,19 +35,19 @@ class MembershipPolicy
     }
 
     /**
-     * Determine whether the user can view the company.
+     * Determine whether the user can view the membership.
      *
      * @param User $user
-     * @param Company $company
+     * @param Membership $membership
      * @return mixed
      */
-    public function view(User $user, Company $company)
+    public function view(User $user, Membership $membership)
     {
         //
     }
 
     /**
-     * Determine whether the user can create companies.
+     * Determine whether the user can create memberships.
      *
      * @param User $user
      * @return mixed
@@ -58,55 +58,55 @@ class MembershipPolicy
     }
 
     /**
-     * Determine whether the user can update the company.
+     * Determine whether the user can update the membership.
      *
      * @param User $user
-     * @param Company $company
+     * @param Membership $membership
      * @return mixed
      */
-    public function update(User $user, Company $company)
+    public function update(User $user, Membership $membership)
     {
-        $userMemberships = $user->memberships()->pluck('companies.id');
+        $userMemberships = $user->memberships()->pluck('memberships.id');
 
-        return $userMemberships->contains($company->id)
-            ? Response::allow() : Response::deny('You do not have permission to update this company.');
+        return $userMemberships->contains($membership->id)
+            ? Response::allow() : Response::deny('You do not have permission to update this membership.');
     }
 
     /**
-     * Determine whether the user can delete the company.
+     * Determine whether the user can delete the membership.
      *
      * @param User $user
-     * @param Company $company
+     * @param Membership $membership
      * @return mixed
      */
-    public function delete(User $user, Company $company)
+    public function delete(User $user, Membership $membership)
     {
-        $userMemberships = $user->memberships()->pluck('companies.id');
+        $userMemberships = $user->memberships()->pluck('memberships.id');
 
-        return $userMemberships->contains($company->id)
-            ? Response::allow() : Response::deny('You do not have permission to delete this company.');
+        return $userMemberships->contains($membership->id)
+            ? Response::allow() : Response::deny('You do not have permission to delete this membership.');
     }
 
     /**
-     * Determine whether the user can restore the company.
+     * Determine whether the user can restore the membership.
      *
      * @param User $user
-     * @param Company $company
+     * @param Membership $membership
      * @return mixed
      */
-    public function restore(User $user, Company $company)
+    public function restore(User $user, Membership $membership)
     {
         //
     }
 
     /**
-     * Determine whether the user can permanently delete the company.
+     * Determine whether the user can permanently delete the membership.
      *
      * @param User $user
-     * @param Company $company
+     * @param Membership $membership
      * @return mixed
      */
-    public function forceDelete(User $user, Company $company)
+    public function forceDelete(User $user, Membership $membership)
     {
         //
     }

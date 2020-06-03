@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         //use user seeder to create users
         $this->call(UserSeeder::class);
 
-        //use company seeder to create company and employees
-        $this->call(CompanySeeder::class);
+        //use the membership seeder to create memberships and members
+        $this->call(MembershipSeeder::class);
     }
 }

@@ -23,10 +23,9 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th class="w-auto">{{ __('Logo') }}</th>
                                     <th class="w-auto">{{ __('Membership') }}</th>
-                                    <th class="w-auto">{{ __('Website') }}</th>
-                                    <th class="w-auto">{{ __('Email') }}</th>
+                                    <th class="w-auto">{{ __('Price') }}</th>
+                                    <th class="w-auto">{{ __('License') }}</th>
                                     <th class="text-center" colspan="2">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -34,12 +33,9 @@
                             <tbody>
                                 @foreach($memberships as $membership)
                                     <tr>
-                                        <td class="text-center">
-                                            <img src="{{ asset('storage/' . $membership->logo) }}" style="width: 60px; height: 60px;">
-                                        </td>
                                         <td style="vertical-align: middle">{{ $membership->name }}</td>
-                                        <td style="vertical-align: middle">{{ $membership->website }}</td>
-                                        <td style="vertical-align: middle">{{ $membership->email }}</td>
+                                        <td style="vertical-align: middle">{{ $membership->price }}</td>
+                                        <td style="vertical-align: middle">{{ $membership->playing_alowed }}</td>
                                         <td class="text-center" style="vertical-align: middle;">
                                             <a href="{{ route('membership.edit', $membership->id) }}">
                                                 <button class="btn btn-sm btn-warning text-nowrap"><i class="fas fa-edit"></i> {{ __('Edit') }}</button>

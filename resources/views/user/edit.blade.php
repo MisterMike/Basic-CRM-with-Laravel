@@ -68,10 +68,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label>{{ __('Companies to manage') }}</label>
-                                <select name="companies[]" class="form-control" multiple style="height: 250px">
-                                    @foreach($companies as $k => $company)
-                                        <option value="{{ $company->id }}" @if ($user->companies->contains($company->id)) selected @endif>{{ $company->name }}</option>
+                                <label>{{ __('Memberships to manage') }}</label>
+                                <select name="memberships[]" class="form-control" multiple style="height: 250px">
+                                    @foreach($memberships as $k => $membership)
+                                        <option value="{{ $membership->id }}" @if ($user->memberships->contains($membership->id)) selected @endif>{{ $membership->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

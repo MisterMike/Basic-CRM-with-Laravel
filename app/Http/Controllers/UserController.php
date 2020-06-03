@@ -30,8 +30,8 @@ class UserController extends Controller
     public function index()
     {
         //get users with companies
-        $users = User::with(['companies' => function($query){
-            $query->select(['companies.name']);
+        $users = User::with(['memberships' => function($query){
+            $query->select(['memberships.name']);
         }])->paginate(5);
 
         //return view
@@ -47,11 +47,11 @@ class UserController extends Controller
     public function create()
     {
         //get companies for create form
-        $companies = DB::table('companies')->get();
+        $memberships = DB::table('memberships')->get();
 
         //show the view
         return view('user.create', [
-            'companies' => $companies
+            'memberships' => $memberships
         ]);
     }
 
@@ -87,10 +87,10 @@ class UserController extends Controller
         );
 
         //create user with companies
-        if(empty($data['companies'])) {
+        if(empty($data['memberships'])) {
             $create = User::create($updateData);
         } else {
-            $create = User::create($updateData)->companies()->attach($data['companies']);
+            $create = User::create($updateData)->memberships()->attach($data['memberships']);
         }
 
         if($create) {
@@ -112,18 +112,18 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //get users with companies
-        $user = User::where('id', $id)->with(['companies' => function($query){
-            $query->select(['companies.id', 'companies.name']);
+        //get users with memberships
+        $user = User::where('id', $id)->with(['memberships' => function($query){
+            $query->select(['memberships.id', 'memberships.name']);
         }])->get()->first();
 
         //get companies
-        $companies = DB::table('companies')->get();
+        $memberships = DB::table('memberships')->get();
 
         //view edit form
         return view('user.edit', [
             'user' => $user,
-            'companies' => $companies
+            'memberships' => $memberships
         ]);
     }
 
@@ -167,15 +167,15 @@ class UserController extends Controller
         //check password
         if(!empty($data['password'])) $updateData['password'] = Hash::make($data['password']);
 
-        $user = User::find($id)->companies()->detach();
+        $user = User::find($id)->memberships()->detach();
 
         $update = User::find($id)->update($updateData);
 
         if($update) {
 
-            //update companies
-            if(!empty($data['companies'])) {
-                User::find($id)->companies()->sync($data['companies']);
+            //update memberships
+            if(!empty($data['memberships'])) {
+                User::find($id)->memberships()->sync($data['memberships']);
             }
 
             //return with success

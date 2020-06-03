@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
+use App\Membership;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
@@ -25,7 +25,7 @@ class MembershipController extends Controller
     }
 
     /**
-     * Show companies list
+     * Show memberships list
      *
      * @return Renderable
      */
@@ -39,7 +39,7 @@ class MembershipController extends Controller
     }
 
     /**
-     * Show company create form
+     * Show membershi create form
      * @return View
      */
     public function create()
@@ -48,7 +48,7 @@ class MembershipController extends Controller
     }
 
     /**
-     * Store company
+     * Store membership
      * @param Request $request
      * @return RedirectResponse
      */
@@ -57,10 +57,10 @@ class MembershipController extends Controller
         //basic validation
         $request->validate([
             'name' => 'required',
-            'email' => 'email'
+            'price' => 'required'
         ], [
-            'name.required' => trans('Name is required!'),
-            'email.email' => trans('E-mail address is not a valid one!')
+            'name.required' => trans('A Name is required!'),
+            'price.required' => trans('A price is mandatory but can be set to 0')
         ]);
 
         //get all data from the request
@@ -69,8 +69,8 @@ class MembershipController extends Controller
         //set update data
         $insertData = array(
             'name' => $data['name'],
-            'email' => $data['email'],
-            'website' => $data['website']
+            'price' => $data['price'],
+            'playing_alowed' => $data['playing_alowed']
         );
 
         //handle logo
@@ -107,7 +107,7 @@ class MembershipController extends Controller
     }
 
     /**
-     * Show the form for editing the company
+     * Show the form for editing the membership
      *
      * @param int $id
      * @return View
@@ -122,7 +122,7 @@ class MembershipController extends Controller
     }
 
     /**
-     * Update the specified company
+     * Update the specified membership
      *
      * @param Request $request
      * @param int $id
@@ -132,15 +132,15 @@ class MembershipController extends Controller
     public function update(Request $request, $id)
     {
         //check if authorized
-        $this->authorize('update', Company::find($id));
+        $this->authorize('update', Membership::find($id));
 
         //basic validation
         $request->validate([
             'name' => 'required',
-            'email' => 'email'
+            'price' => 'required'
         ], [
             'name.required' => trans('Name is required'),
-            'email.email' => trans('E-mail address is not a valid one!'),
+            'price.required' => trans('A price is mandatory but can be set to 0'),
         ]);
 
         //get all data from the request
@@ -151,8 +151,8 @@ class MembershipController extends Controller
         //and add later if it is changed
         $updateData = array(
             'name' => $data['name'],
-            'email' => $data['email'],
-            'website' => $data['website']
+            'price' => $data['price'],
+            'playing_alowed' => $data['playing_alowed']
         );
 
         //handle logo
@@ -198,27 +198,27 @@ class MembershipController extends Controller
     public function destroy($id)
     {
         //check if authorized
-        $this->authorize('delete', Company::find($id));
+        $this->authorize('delete', Membership::find($id));
 
         //get logo file first
         $logo = DB::table('memberships')->where('id', $id)->get('logo')->first();
 
-        //delete the company from db
+        //delete the membership from db
         $delete = DB::table('memberships')->where('id', $id)->delete();
 
         if($delete) {
-            //if company was deleted then remove the logo file
+            //if membership was deleted then remove the logo file
             Storage::disk('local')->delete('public/' . $logo->logo);
 
             //return with success
             return redirect()->route('memberships')
-                ->with('success', 'The Membership Type deleted successfully!');
+                ->with('success', 'The Membership was successfully deleted');
 
         }  else  {
 
             //return with error
             return redirect()->route('memberships')
-                ->with('error', 'The Membership Type could not be deleted!');
+                ->with('error', 'The Membership could not be deleted!');
         }
     }
 }

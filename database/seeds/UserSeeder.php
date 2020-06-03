@@ -14,15 +14,15 @@ class UserSeeder extends Seeder
     {
         // create Administrator user with factory
         factory(User::class)->create([
-            'name' => 'CRM Administrator',
-            'email' => 'admin@site.com',
+            'name' => 'Club Administrator',
+            'email' => 'admin@myclub.com',
             'role' => 'Administrator'
         ]);
 
         // create Manager user with factory
         factory(User::class)->create([
-            'name' => 'CRM Manager',
-            'email' => 'manager@site.com',
+            'name' => 'Finance Manager',
+            'email' => 'finance@myclub.com',
             'role' => 'Manager'
         ]);
     }

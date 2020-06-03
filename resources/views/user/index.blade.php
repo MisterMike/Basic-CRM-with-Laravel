@@ -33,7 +33,7 @@
                                     <th class="w-auto">{{ __('Name') }}</th>
                                     <th class="w-auto">{{ __('Email') }}</th>
                                     <th class="w-auto">{{ __('Type') }}</th>
-                                    <th class="w-auto">{{ __('Companies') }}</th>
+                                    <th class="w-auto">{{ __('Memberships') }}</th>
                                     <th class="text-center" colspan="2">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -45,8 +45,8 @@
                                         <td style="vertical-align: middle">{{ $user->email }}</td>
                                         <td style="vertical-align: middle">{{ $user->role }}</td>
                                         <td style="vertical-align: middle">
-                                            @foreach($user->companies as $company)
-                                                <button class="btn btn-sm btn-outline-info m-1">{{ $company->name }}</button>
+                                            @foreach($user->memberships as $membership)
+                                                <button class="btn btn-sm btn-outline-info m-1">{{ $membership->name }}</button>
                                             @endforeach
                                         </td>
                                         <td class="text-center" style="vertical-align: middle;">

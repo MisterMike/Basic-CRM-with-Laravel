@@ -30,8 +30,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label>{{ __('Email') }}</label>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="{{ __('Email') }}" value="{{ $membership->email }}" />
+                                <label>{{ __('Price') }}</label>
+                                <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" placeholder="{{ __('Price') }}" value="{{ $membership->price }}" />
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,22 +40,13 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label>{{ __('Logo') }}</label>
-                                        <input type="file" class="form-control" name="logo" value="{{ $membership->logo }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4 text-right">
-                                    @if (!empty($membership->logo))
-                                        <img src="{{ asset('storage/' . $membership->logo) }}" style="width: 100px; height: 100px;">
-                                    @endif
-                                </div>
+                                
+                            
                             </div>
 
                             <div class="form-group">
-                                <label>{{ __('Website') }}</label>
-                                <input type="text" class="form-control" name="website" placeholder="{{ __('Website') }}" value="{{ $membership->website }}" />
+                                <label>{{ __('License') }}</label>
+                                <input type="text" class="form-control" name="playing_alowed" placeholder="{{ __('Playing allowed') }}" value="{{ $membership->playing_alowed }}" />
                             </div>
                         </div>
                         <div class="card-footer">
