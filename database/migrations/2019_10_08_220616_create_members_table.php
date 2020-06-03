@@ -13,14 +13,22 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('members', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('sex');
+            $table->boolean('active');
             $table->string('first_name', 65)->nullable(false);
             $table->string('last_name', 65)->nullable(false);
+            $table->string('address', 65)->nullable(false);
+            $table->integer('zip');
+            $table->string('city', 65)->nullable(false);
             $table->string('email', 255)->nullable();
             $table->string('phone', 65)->nullable();
-            $table->unsignedBigInteger('company_id')->nullable();
-            $table->foreign('company_id')->references('id')->on('companies')
+            $table->date('birthday');
+            $table->date('member_since');
+            $table->date('member_until');
+            $table->unsignedBigInteger('membership_id')->nullable();
+            $table->foreign('membership_id')->references('id')->on('memberships')
                 ->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
@@ -32,6 +40,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('members');
     }
 }

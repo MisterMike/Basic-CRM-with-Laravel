@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model
+class Member extends Model
 {
     public $timestamps = false;
 
     //
-    public function company()
+    public function membership()
     {
-        return $this->belongsTo('App\Company');
+        return $this->belongsTo('App\Membership');
     }
 }

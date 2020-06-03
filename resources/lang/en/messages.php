@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'Companies' => 'Companies',
+    'Memberships' => 'Memberships',
     'List' => 'List',
     'Add' => 'Add',
-    'Employees' => 'Employees',
+    'Members' => 'Members',
     'English' => 'English',
     'Spanish' => 'Spanish',
     'Login' => 'Login',
@@ -13,6 +13,6 @@ return [
     'Language' => 'Language',
     'show_all' => 'Show All',
     'all_rights_reserved' => 'All rights reserved.',
-    'nof_companies' => 'There are :nof companies.',
-    'nof_employees' => 'There are :nof employees.',
+    'nof_memberships' => 'There are :nof memberships.',
+    'nof_members' => 'There are :nof members.',
 ];

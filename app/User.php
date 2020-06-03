@@ -64,9 +64,9 @@ class User extends Authenticatable
         return $this->role === $role;
     }
 
-    public function companies()
+    public function memberships()
     {
-//        return $this->belongsToMany('App\Company', 'user_company', 'user_id', 'company_id');
-        return $this->belongsToMany('App\Company');
+//        return $this->belongsToMany('App\Membership', 'user_company', 'user_id', 'company_id');
+        return $this->belongsToMany('App\Membership');
     }
 }

@@ -9,7 +9,7 @@ $factory->define(Company::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
         'email' => $faker->companyEmail,
-        'logo' => $faker->image('storage/app/public', '200', '200', null, false),
-        'website' => $faker->url
+        'logo' => $faker->image('storage/app/public', '400', '400', null, false),
+        'website' => $faker->url,
     ];
 });

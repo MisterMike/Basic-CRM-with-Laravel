@@ -35,26 +35,26 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
                             <a id="companiesDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ __('messages.Companies') }} <span class="caret"></span>
+                                {{ __('messages.Memberships') }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="companiesDropdown">
-                                <a class="dropdown-item" href="{{ route('companies') }}">
+                                <a class="dropdown-item" href="{{ route('memberships') }}">
                                     <i class="fas fa-list"></i> {{ __('messages.List') }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('company.create') }}">
+                                <a class="dropdown-item" href="{{ route('membership.create') }}">
                                     <i class="fas fa-plus"></i> {{ __('messages.Add') }}
                                 </a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="companiesDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ __('messages.Employees') }} <span class="caret"></span>
+                                {{ __('messages.Members') }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="companiesDropdown">
-                                <a class="dropdown-item" href="{{ route('employees') }}">
+                                <a class="dropdown-item" href="{{ route('members') }}">
                                     <i class="fas fa-list"></i> {{ __('messages.List') }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('employee.create') }}">
+                                <a class="dropdown-item" href="{{ route('member.create') }}">
                                     <i class="fas fa-plus"></i> {{ __('messages.Add') }}
                                 </a>
                             </div>

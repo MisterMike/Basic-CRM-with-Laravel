@@ -13,13 +13,13 @@ class CreateCompanyUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('company_user', function (Blueprint $table) {
+        Schema::create('membership_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('membership_id');
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->foreign('company_id')->references('id')->on('companies')
+            $table->foreign('membership_id')->references('id')->on('memberships')
                 ->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
@@ -31,6 +31,6 @@ class CreateCompanyUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_user');
+        Schema::dropIfExists('membership_user');
     }
 }

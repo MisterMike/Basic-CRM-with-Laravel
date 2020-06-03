@@ -2,12 +2,12 @@
 
 namespace App\Policies;
 
-use App\Company;
+use App\Membership;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class CompanyPolicy
+class MembershipPolicy
 {
     use HandlesAuthorization;
 
@@ -66,9 +66,9 @@ class CompanyPolicy
      */
     public function update(User $user, Company $company)
     {
-        $userCompanies = $user->companies()->pluck('companies.id');
+        $userMemberships = $user->memberships()->pluck('companies.id');
 
-        return $userCompanies->contains($company->id)
+        return $userMemberships->contains($company->id)
             ? Response::allow() : Response::deny('You do not have permission to update this company.');
     }
 
@@ -81,9 +81,9 @@ class CompanyPolicy
      */
     public function delete(User $user, Company $company)
     {
-        $userCompanies = $user->companies()->pluck('companies.id');
+        $userMemberships = $user->memberships()->pluck('companies.id');
 
-        return $userCompanies->contains($company->id)
+        return $userMemberships->contains($company->id)
             ? Response::allow() : Response::deny('You do not have permission to delete this company.');
     }
 

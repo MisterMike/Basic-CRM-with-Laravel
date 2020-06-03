@@ -13,40 +13,50 @@
                     </div>
                 </div>
             @endif
+            @if(session()->get('error'))
+                <div class="col-md-12 mb-2">
+                    <div class="alert alert-danger alert-dismissible fade show w-100" role="alert">
+                        {{ session()->get('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            @endif
 
             <div class="col-md-12">
                 <div class="card">
 
-                    <div class="card-header">{{ __('Companies') }}</div>
+                    <div class="card-header">{{ __('Members') }}</div>
 
                     <div class="card-body">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th class="w-auto">{{ __('Logo') }}</th>
-                                    <th class="w-auto">{{ __('Company') }}</th>
-                                    <th class="w-auto">{{ __('Website') }}</th>
+                                    <th class="w-auto">{{ __('First Name') }}</th>
+                                    <th class="w-auto">{{ __('Last Name') }}</th>
                                     <th class="w-auto">{{ __('Email') }}</th>
+                                    <th class="w-auto">{{ __('Phone') }}</th>
+                                    <th class="w-auto">{{ __('Membership') }}</th>
                                     <th class="text-center" colspan="2">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                @foreach($companies as $company)
+                                @foreach($members as $k => $member)
                                     <tr>
-                                        <td class="text-center">
-                                            <img src="{{ asset('storage/' . $company->logo) }}" style="width: 60px; height: 60px;">
-                                        </td>
-                                        <td style="vertical-align: middle">{{ $company->name }}</td>
-                                        <td style="vertical-align: middle">{{ $company->website }}</td>
-                                        <td style="vertical-align: middle">{{ $company->email }}</td>
-                                        <td class="text-center" style="vertical-align: middle;">
-                                            <a href="{{ route('company.edit', $company->id) }}">
+                                        <td style="vertical-align: middle">{{ $member->first_name }}</td>
+                                        <td style="vertical-align: middle">{{ $member->last_name }}</td>
+                                        <td style="vertical-align: middle">{{ $member->email }}</td>
+                                        <td style="vertical-align: middle">{{ $member->phone }}</td>
+                                        <td style="vertical-align: middle">{{ $member->membership->name }}</td>
+                                        <td class="text-nowrap text-center" style="vertical-align: middle;">
+                                            <a href="{{ route('member.edit', $member->id) }}">
                                                 <button class="btn btn-sm btn-warning text-nowrap"><i class="fas fa-edit"></i> {{ __('Edit') }}</button>
                                             </a>
                                         </td>
-                                        <td class="text-center" style="vertical-align: middle;">
-                                            <form action="{{ route('company.destroy', $company->id)}}" method="post">
+                                        <td class="text-nowrap text-center" style="vertical-align: middle;">
+                                            <form action="{{ route('member.destroy', $member->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-danger text-nowrap" type="submit"><i class="fas fa-trash"></i> {{ __('Delete') }}</button>
@@ -59,8 +69,8 @@
                     </div>
 
                     <div class="card-footer">
-                        <div class="float-left">{{ $companies->links() }}</div>
-                        <div class="float-right" style="line-height: 2rem">{{ __('Total Records') }}: {{ $companies->total() }}</div>
+                        <div class="float-left">{{ $members->links() }}</div>
+                        <div class="float-right" style="line-height: 2rem">{{ __('Total Members') }}: {{ $members->total() }}</div>
                     </div>
 
                 </div>

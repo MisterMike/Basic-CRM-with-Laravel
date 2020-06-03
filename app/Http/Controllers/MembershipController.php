@@ -12,7 +12,7 @@ use Illuminate\View\View;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
-class CompanyController extends Controller
+class MembershipController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -31,10 +31,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = DB::table('companies')->paginate(10);
+        $memberships = DB::table('memberships')->paginate(10);
 
-        return view('company.index', [
-            'companies' => $companies
+        return view('membership.index', [
+            'memberships' => $memberships
         ]);
     }
 
@@ -44,7 +44,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('company.create');
+        return view('membership.create');
     }
 
     /**
@@ -93,16 +93,16 @@ class CompanyController extends Controller
         }
 
         //insert
-        $create = DB::table('companies')->insert($insertData);
+        $create = DB::table('memberships')->insert($insertData);
 
         if($create) {
             //return with success
-            return redirect('companies')
-                ->with('success', trans('Company has been successfully created!'));
+            return redirect('memberships')
+                ->with('success', trans('The Membership Type has been successfully created!'));
         } else {
             //return with error
-            return redirect('companies')
-                ->with('error', trans('Company could not be created!'));
+            return redirect('memberships')
+                ->with('error', trans('The Membership Type could not be created!'));
         }
     }
 
@@ -114,10 +114,10 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        $company = DB::table('companies')->where('id', $id)->get()->first();
+        $membership = DB::table('memberships')->where('id', $id)->get()->first();
 
-        return view('company.edit', [
-            'company' => $company
+        return view('membership.edit', [
+            'membership' => $membership
         ]);
     }
 
@@ -175,16 +175,16 @@ class CompanyController extends Controller
         }
 
         //update
-        $update = DB::table('companies')->where('id', $id)->update($updateData);
+        $update = DB::table('memberships')->where('id', $id)->update($updateData);
 
         if($update) {
             //return with success
-            return redirect('companies')
-                ->with('success', trans('Company has been successfully updated!'));
+            return redirect('memberships')
+                ->with('success', trans('The Membership Type has been successfully updated!'));
         } else {
             //return with error
-            return redirect('companies')
-                ->with('error', trans('Company could not be updated!'));
+            return redirect('memberships')
+                ->with('error', trans('The Membership Type could not be updated!'));
         }
     }
 
@@ -201,24 +201,24 @@ class CompanyController extends Controller
         $this->authorize('delete', Company::find($id));
 
         //get logo file first
-        $logo = DB::table('companies')->where('id', $id)->get('logo')->first();
+        $logo = DB::table('memberships')->where('id', $id)->get('logo')->first();
 
         //delete the company from db
-        $delete = DB::table('companies')->where('id', $id)->delete();
+        $delete = DB::table('memberships')->where('id', $id)->delete();
 
         if($delete) {
             //if company was deleted then remove the logo file
             Storage::disk('local')->delete('public/' . $logo->logo);
 
             //return with success
-            return redirect()->route('companies')
-                ->with('success', 'Company deleted successfully!');
+            return redirect()->route('memberships')
+                ->with('success', 'The Membership Type deleted successfully!');
 
         }  else  {
 
             //return with error
-            return redirect()->route('companies')
-                ->with('error', 'Company could not be deleted!');
+            return redirect()->route('memberships')
+                ->with('error', 'The Membership Type could not be deleted!');
         }
     }
 }

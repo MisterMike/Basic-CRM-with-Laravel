@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
+use App\Member;
 use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Access\Gate;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
-class EmployeeController extends Controller
+class MemberController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -33,12 +33,12 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::with(['company' => function($query){
+        $members = Member::with(['membership' => function($query){
             $query->select(['id', 'name']);
         }])->paginate(10);
 
-        return view('employee.index', [
-            'employees' => $employees
+        return view('member.index', [
+            'members' => $members
         ]);
     }
 
@@ -48,12 +48,12 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //get companies for create form
-        $companies = DB::table('companies')->get();
+        //get memberships for create form
+        $memberships = DB::table('memberships')->get();
 
         //show the view
         return view('employee.create', [
-            'companies' => $companies
+            'memberships' => $memberships
         ]);
     }
 
@@ -65,24 +65,24 @@ class EmployeeController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        //user companies
-        $userCompanies = Auth::user()->companies()->pluck('companies.id');
+        //user memberships
+        $userMemberships = Auth::user()->memberships()->pluck('memberships.id');
 
-        if(Auth::user()->hasRole('Manager') && !$userCompanies->contains($request->get('company_id'))) {
-            return redirect('employees')
-                ->with('error', trans('You do not have permission to create an employee for this company!'));
+        if(Auth::user()->hasRole('Manager') && !$userMemberships->contains($request->get('membership_id'))) {
+            return redirect('members')
+                ->with('error', trans('You do not have permission to create a member for this membership!'));
         }
 
         //basic validation
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'company_id' => 'required',
+            'membership_id' => 'required',
             'email' => 'email'
         ], [
             'first_name.required' => trans('First name is required!'),
             'last_name.required' => trans('Last name is required!'),
-            'company_id.required' => trans('You should select a company for the employee'),
+            'membership_id.required' => trans('You should select a membership for this member'),
             'email.email' => trans('E-mail address is not a valid one!')
         ]);
 
@@ -95,20 +95,20 @@ class EmployeeController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'company_id' => $data['company_id']
+            'membership_id' => $data['membership_id']
         );
 
         //insert
-        $create = DB::table('employees')->insert($insertData);
+        $create = DB::table('members')->insert($insertData);
 
         if($create) {
             //return with success
-            return redirect('employees')
-                ->with('success', trans('Employee has been successfully created!'));
+            return redirect('members')
+                ->with('success', trans('The member has been successfully created!'));
         } else {
             //return with error
-            return redirect('employees')
-                ->with('error', trans('Employee could not be created!'));
+            return redirect('members')
+                ->with('error', trans('The member could not be created!'));
         }
     }
 
@@ -120,15 +120,15 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //get companies for create form
-        $companies = DB::table('companies')->get();
+        //get memberships to create form
+        $memberships = DB::table('memberships')->get();
 
         //get the employee info
-        $employee = DB::table('employees')->where('id', $id)->get()->first();
+        $member = DB::table('members')->where('id', $id)->get()->first();
 
-        return view('employee.edit', [
-            'employee' => $employee,
-            'companies' => $companies
+        return view('member.edit', [
+            'member' => $member,
+            'memberships' => $memberships
         ]);
     }
 
@@ -143,7 +143,7 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         //check if authorized
-        $this->authorize('update', Employee::find($id));
+        $this->authorize('update', Member::find($id));
 
         //basic validation
         $request->validate([
@@ -165,20 +165,20 @@ class EmployeeController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'company_id' => $data['company_id']
+            'membership_id' => $data['membership_id']
         );
 
         //update
-        $update = DB::table('employees')->where('id', $id)->update($updateData);
+        $update = DB::table('members')->where('id', $id)->update($updateData);
 
         if($update) {
             //return with success
-            return redirect('employees')
-                ->with('success', trans('Employee has been successfully updated!'));
+            return redirect('members')
+                ->with('success', trans('The Member has been successfully updated!'));
         } else {
             //return with error
-            return redirect('employees')
-                ->with('error', trans('Employee could not be updated!'));
+            return redirect('members')
+                ->with('error', trans('The Member could not be updated!'));
         }
     }
 
@@ -192,19 +192,19 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //check if authorized
-        $this->authorize('delete', Employee::find($id));
+        $this->authorize('delete', Member::find($id));
 
         //delete the employee from db
-        $delete = DB::table('employees')->where('id', $id)->delete();
+        $delete = DB::table('members')->where('id', $id)->delete();
 
         if($delete) {
             //return with success
-            return redirect()->route('employees')
-                ->with('success', 'Employee deleted successfully!');
+            return redirect()->route('members')
+                ->with('success', 'The Member deleted successfully!');
         }  else  {
             //return with error
-            return redirect()->route('employees')
-                ->with('error', 'Employee could not be deleted!');
+            return redirect()->route('members')
+                ->with('error', 'The Member could not be deleted!');
         }
     }
 }

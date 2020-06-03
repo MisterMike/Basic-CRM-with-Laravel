@@ -34,23 +34,23 @@ Route::delete('/user/{id}', 'UserController@destroy')->name('user.destroy');
 /**
  * Routes for Company controller
  */
-Route::get('/companies', 'CompanyController@index')->middleware('role:Manager')->name('companies');
-Route::get('/company/create', 'CompanyController@create')->middleware('role:Manager')->name('company.create');
-Route::post('/company/store', 'CompanyController@store')->middleware('role:Manager')->name('company.store');
-Route::get('/company/{id}', 'CompanyController@show')->middleware('role:Manager')->name('company.show');
-Route::get('/company/{id}/edit', 'CompanyController@edit')->middleware('role:Manager')->name('company.edit');
-Route::put('/company/{id}', 'CompanyController@update')->middleware('role:Manager')->name('company.update');
-Route::delete('/company/{id}', 'CompanyController@destroy')->middleware('role:Manager')->name('company.destroy');
+Route::get('/memberships', 'MembershipController@index')->middleware('role:Manager')->name('memberships');
+Route::get('/membership/create', 'MembershipController@create')->middleware('role:Manager')->name('membership.create');
+Route::post('/membership/store', 'MembershipController@store')->middleware('role:Manager')->name('membership.store');
+Route::get('/membership/{id}', 'MembershipController@show')->middleware('role:Manager')->name('membership.show');
+Route::get('/membership/{id}/edit', 'MembershipController@edit')->middleware('role:Manager')->name('membership.edit');
+Route::put('/membership/{id}', 'MembershipController@update')->middleware('role:Manager')->name('membership.update');
+Route::delete('/membership/{id}', 'MembershipController@destroy')->middleware('role:Manager')->name('membership.destroy');
 
 /**
  * Routes for Employee controller
  */
-Route::get('/employees', 'EmployeeController@index')->middleware('role:Manager')->name('employees');
-Route::get('/employee/create', 'EmployeeController@create')->middleware('role:Manager')->name('employee.create');
-Route::post('/employee/store', 'EmployeeController@store')->middleware('role:Manager')->name('employee.store');
-Route::get('/employee/{id}', 'EmployeeController@show')->middleware('role:Manager')->name('employee.show');
-Route::get('/employee/{id}/edit', 'EmployeeController@edit')->middleware('role:Manager')->name('employee.edit');
-Route::put('/employee/{id}', 'EmployeeController@update')->middleware('role:Manager')->name('employee.update');
-Route::delete('/employee/{id}', 'EmployeeController@destroy')->middleware('role:Manager')->name('employee.destroy');
+Route::get('/members', 'MemberController@index')->middleware('role:Manager')->name('members');
+Route::get('/rmembe/create', 'MemberController@create')->middleware('role:Manager')->name('member.create');
+Route::post('/member/store', 'MemberController@store')->middleware('role:Manager')->name('member.store');
+Route::get('/member/{id}', 'MemberController@show')->middleware('role:Manager')->name('member.show');
+Route::get('/member/{id}/edit', 'MemberController@edit')->middleware('role:Manager')->name('member.edit');
+Route::put('/member/{id}', 'MemberController@update')->middleware('role:Manager')->name('member.update');
+Route::delete('/member/{id}', 'MemberController@destroy')->middleware('role:Manager')->name('member.destroy');
 
 
