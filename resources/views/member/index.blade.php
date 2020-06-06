@@ -33,12 +33,13 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th class="w-auto">{{ __('First Name') }}</th>
-                                    <th class="w-auto">{{ __('Last Name') }}</th>
-                                    <th class="w-auto">{{ __('Email') }}</th>
-                                    <th class="w-auto">{{ __('Phone') }}</th>
-                                    <th class="w-auto">{{ __('Membership') }}</th>
-                                    <th class="text-center" colspan="2">{{ __('Actions') }}</th>
+                                    <th class="w-auto">{{ __('messages.firstname') }}</th>
+                                    <th class="w-auto">{{ __('messages.lastname') }}</th>
+                                    <th class="w-auto">{{ __('messages.email') }}</th>
+                                    <th class="w-auto">{{ __('messages.phonemobile') }}</th>
+                                    <th class="w-auto">{{ __('messages.membership') }}</th>
+                                    <th class="w-auto">{{ __('messages.license') }}</th>
+                                    <th class="text-center" colspan="2">{{ __('messages.actions') }}</th>
                                 </tr>
                             </thead>
 
@@ -48,8 +49,11 @@
                                         <td style="vertical-align: middle">{{ $member->first_name }}</td>
                                         <td style="vertical-align: middle">{{ $member->last_name }}</td>
                                         <td style="vertical-align: middle">{{ $member->email }}</td>
-                                        <td style="vertical-align: middle">{{ $member->phone }}</td>
+                                        <td style="vertical-align: middle">{{ $member->phone_mobile }}</td>
                                         <td style="vertical-align: middle">{{ $member->membership->name }}</td>
+                                        <td style="vertical-align: middle">
+                                            <i class="fas fa-{{ $member->license ? 'check' : 'times' }}"></i>
+                                        </td>
                                         <td class="text-nowrap text-center" style="vertical-align: middle;">
                                             <a href="{{ route('member.edit', $member->id) }}">
                                                 <button class="btn btn-sm btn-warning text-nowrap"><i class="fas fa-edit"></i> {{ __('Edit') }}</button>

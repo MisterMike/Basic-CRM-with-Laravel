@@ -35,27 +35,27 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
                             <a id="companiesDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ __('messages.Memberships') }} <span class="caret"></span>
+                                {{ __('messages.memberships') }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="companiesDropdown">
                                 <a class="dropdown-item" href="{{ route('memberships') }}">
-                                    <i class="fas fa-list"></i> {{ __('messages.List') }}
+                                    <i class="fas fa-list"></i> {{ __('messages.list') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('membership.create') }}">
-                                    <i class="fas fa-plus"></i> {{ __('messages.Add') }}
+                                    <i class="fas fa-plus"></i> {{ __('messages.add') }}
                                 </a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="companiesDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ __('messages.Members') }} <span class="caret"></span>
+                                {{ __('messages.members') }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="companiesDropdown">
                                 <a class="dropdown-item" href="{{ route('members') }}">
-                                    <i class="fas fa-list"></i> {{ __('messages.List') }}
+                                    <i class="fas fa-list"></i> {{ __('messages.list') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('member.create') }}">
-                                    <i class="fas fa-plus"></i> {{ __('messages.Add') }}
+                                    <i class="fas fa-plus"></i> {{ __('messages.add') }}
                                 </a>
                             </div>
                         </li>
@@ -66,11 +66,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('messages.login') }}</a>
                             </li>
 {{--                            @if (Route::has('register'))--}}
 {{--                                <li class="nav-item">--}}
-{{--                                    <a class="nav-link" href="{{ route('register') }}">{{ __('messages.Register') }}</a>--}}
+{{--                                    <a class="nav-link" href="{{ route('register') }}">{{ __('messages.register') }}</a>--}}
 {{--                                </li>--}}
 {{--                            @endif--}}
                         @else
@@ -81,18 +81,18 @@
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @switch($locale)
                                         @case('en')
-                                        {{ __('messages.English') }} <span class="caret"></span>
+                                        {{ __('messages.english') }} <span class="caret"></span>
                                         @break
                                         @case('de')
-                                        {{ __('messages.German') }} <span class="caret"></span>
+                                        {{ __('messages.german') }} <span class="caret"></span>
                                         @break
                                         @default
-                                        {{ __('messages.Language') }} <span class="caret"></span>
+                                        {{ __('messages.language') }} <span class="caret"></span>
                                     @endswitch
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="home/en"><i class="fas fa-globe"></i> {{ __('messages.English') }}</a>
-                                    <a class="dropdown-item" href="home/de"><i class="fas fa-globe"></i> {{ __('messages.German') }}</a>
+                                    <a class="dropdown-item" href="home/en"><i class="fas fa-globe"></i> {{ __('messages.english') }}</a>
+                                    <a class="dropdown-item" href="home/de"><i class="fas fa-globe"></i> {{ __('messages.german') }}</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -103,7 +103,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->isAdministrator())
                                         <a class="dropdown-item" href="{{ route('users') }}">
-                                            <i class="fas fa-users"></i> {{ __('messages.Users') }}
+                                            <i class="fas fa-users"></i> {{ __('messages.users') }}
                                         </a>
                                         <div class="dropdown-divider"></div>
                                     @endif
@@ -111,7 +111,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt"></i> {{ __('messages.Logout') }}
+                                        <i class="fas fa-sign-out-alt"></i> {{ __('messages.logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

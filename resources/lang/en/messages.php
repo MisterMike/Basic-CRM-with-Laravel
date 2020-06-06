@@ -11,6 +11,7 @@ return [
     'Users' => 'Users',
     'Logout' => 'Logout',
     'Language' => 'Language',
+    'License' => 'Lizenz',
     'show_all' => 'Show All',
     'all_rights_reserved' => 'All rights reserved.',
     'nof_memberships' => 'There are :nof memberships.',
